@@ -1,5 +1,5 @@
-import { CategoryRepository } from "../repositories/CategoryRepository";
-import { SpecificationRepository } from "../repositories/SpecificationRepository";
+import { CategoryRepository } from "../repositories/implemetations/CategoryRepository";
+import { SpecificationRepository } from "../repositories/implemetations/SpecificationRepository";
 import { CreateCategoryController } from "./createCategory/CreateCategoryController";
 import { CreateCategoryUseCase } from "./createCategory/CreateCategoryUseCase";
 import { CreateSpecificationController } from "./createSpecification/CreateSpecificationController";
@@ -9,8 +9,8 @@ import { GetCategoryUseCase } from "./getCategory/GetCategoryUseCase";
 import { GetSpecificationController } from "./getSpecification/GetSpecificationController";
 import { GetSpecificationUseCase } from "./getSpecification/GetSpecificationUseCase";
 
-const categoryRepository = new CategoryRepository();
-const specificationRepository = new SpecificationRepository();
+const categoryRepository = CategoryRepository.getInstance();
+const specificationRepository = SpecificationRepository.getInstance();
 
 const createCategoryUseCase = new CreateCategoryUseCase(categoryRepository);
 const createCategoryController = new CreateCategoryController(
