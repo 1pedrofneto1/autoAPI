@@ -8,6 +8,8 @@ import { GetCategoryController } from "./getCategory/GetCategoryController";
 import { GetCategoryUseCase } from "./getCategory/GetCategoryUseCase";
 import { GetSpecificationController } from "./getSpecification/GetSpecificationController";
 import { GetSpecificationUseCase } from "./getSpecification/GetSpecificationUseCase";
+import { ImportCategoryController } from "./importCategory/ImportCategoryController";
+import { ImportCategoryUseCase } from "./importCategory/ImportCategoryUseCase";
 
 const categoryRepository = CategoryRepository.getInstance();
 const specificationRepository = SpecificationRepository.getInstance();
@@ -19,6 +21,11 @@ const createCategoryController = new CreateCategoryController(
 
 const getCategoryUseCase = new GetCategoryUseCase(categoryRepository);
 const getCategoryController = new GetCategoryController(getCategoryUseCase);
+
+const importCategoryUseCase = new ImportCategoryUseCase(categoryRepository);
+const importCategoryController = new ImportCategoryController(
+    importCategoryUseCase,
+);
 
 const createSpecificationUseCase = new CreateSpecificationUseCase(
     specificationRepository,
@@ -39,6 +46,8 @@ export {
     specificationRepository,
     createCategoryController,
     createCategoryUseCase,
+    importCategoryController,
+    importCategoryUseCase,
     createSpecificationController,
     createSpecificationUseCase,
     getCategoryController,
