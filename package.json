@@ -4,18 +4,22 @@
     "main": "index.js",
     "license": "MIT",
     "scripts": {
-        "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts"
+        "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn --watch src,src/swagger.yaml src/server.ts"
     },
     "dependencies": {
         "csv-parse": "^5.6.0",
         "express": "^4.18.2",
         "multer": "^1.4.5-lts.1",
-        "uuid": "^9.0.1"
+        "swagger-ui-express": "^5.0.1",
+        "uuid": "^9.0.1",
+        "yamljs": "^0.3.0"
     },
     "devDependencies": {
         "@types/express": "^4.17.21",
         "@types/multer": "^1.4.12",
+        "@types/swagger-ui-express": "^4.1.8",
         "@types/uuid": "^9.0.7",
+        "@types/yamljs": "^0.2.34",
         "@typescript-eslint/eslint-plugin": "^6.17.0",
         "@typescript-eslint/parser": "^6.17.0",
         "eslint": "^8.56.0",

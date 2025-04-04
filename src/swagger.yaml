@@ -1,0 +1,114 @@
+openapi: 3.0.0
+info:
+    title: RentalX Documentation
+    description: This is an API Rent
+    version: 1.0.0
+    contact:
+        email: pedrofernandescn@gmail.com
+
+paths:
+    /category:
+        get:
+            tags: [Category]
+            summary: get categories
+            description: Get all created categories
+            responses:
+                "200":
+                    description: A JSON array of categories
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                        name:
+                                            type: string
+                                        description:
+                                            type: string
+                                        created_at:
+                                            type: string
+        post:
+            tags: [Category]
+            summary: create category
+            description: Create a new category
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                name:
+                                    type: string
+                                description:
+                                    type: string
+                        example:
+                            name: Example name category
+                            description: Example description category
+            responses:
+                "201":
+                    description: The category was created!!!
+                "500":
+                    description: Category already exists!
+    /category/import:
+        post:
+            tags: [Category]
+            summary: Import categories list
+            description: Import categories via CSV file
+            requestBody:
+                required: true
+                content:
+                    multipart/form-data:
+                        schema:
+                            type: object
+                            properties:
+                                file:
+                                    type: string
+                                    format: binary
+    /specification:
+        get:
+            tags: [Specification]
+            summary: get specifications
+            description: Get all created specificantions
+            responses:
+                "200":
+                    description: A JSON Array of specifications
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                        name:
+                                            type: string
+                                        description:
+                                            type: string
+                                        created_at:
+                                            type: string
+        post:
+            tags: [Specification]
+            summary: create specification
+            description: Create a new specification
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                name:
+                                    type: string
+                                description:
+                                    type: string
+                        example:
+                            name: Example name specification
+                            description: Example description specification
+            responses:
+                "201": The specification was created!!!
+                "500": Specification already exists!
