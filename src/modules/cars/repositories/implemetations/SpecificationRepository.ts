@@ -1,46 +1,40 @@
-import { Specification } from "../../models/Specification";
+import { Repository } from "typeorm";
+
+import { AppDataSource } from "../../../../database/data-source";
+import { Specification } from "../../entities/Specification";
 import {
     ICreateSpecificationDTO,
     ISpecificationRepository,
 } from "../ISpecificationRepository";
 
 class SpecificationRepository implements ISpecificationRepository {
-    private specifications: Specification[];
+    private repository: Repository<Specification>;
 
-    // eslint-disable-next-line no-use-before-define
-    private static INSTANCE: SpecificationRepository;
-
-    private constructor() {
-        this.specifications = [];
+    constructor() {
+        this.repository = AppDataSource.getRepository(Specification);
     }
 
-    public static getInstance(): SpecificationRepository {
-        if (!SpecificationRepository.INSTANCE) {
-            SpecificationRepository.INSTANCE = new SpecificationRepository();
-        }
-        return SpecificationRepository.INSTANCE;
-    }
-
-    create({ name, description }: ICreateSpecificationDTO): void {
-        const specifications = new Specification();
-
-        Object.assign(specifications, {
-            name,
+    async create({
+        name,
+        description,
+    }: ICreateSpecificationDTO): Promise<void> {
+        const specification = this.repository.create({
             description,
-            created_at: new Date(),
+            name,
         });
 
-        this.specifications.push(specifications);
+        await this.repository.save(specification);
     }
 
-    list(): Specification[] {
-        return this.specifications;
+    async list(): Promise<Specification[]> {
+        const specifications = await this.repository.find();
+        return specifications;
     }
 
-    findByName(name: string): Specification {
-        const specification = this.specifications.find(
-            (category) => category.name === name,
-        );
+    async findByName(name: string): Promise<Specification> {
+        const specification = await this.repository.findOne({
+            where: { name },
+        });
 
         return specification;
     }

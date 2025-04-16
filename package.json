@@ -4,13 +4,17 @@
     "main": "index.js",
     "license": "MIT",
     "scripts": {
-        "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn --watch src,src/swagger.yaml src/server.ts"
+        "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn --watch src,src/swagger.yaml src/server.ts",
+        "typeorm": "ts-node-dev ./node_modules/typeorm/cli -d src/database/data-source.ts"
     },
     "dependencies": {
         "csv-parse": "^5.6.0",
         "express": "^4.18.2",
         "multer": "^1.4.5-lts.1",
+        "pg": "^8.14.1",
+        "reflect-metadata": "^0.2.2",
         "swagger-ui-express": "^5.0.1",
+        "typeorm": "^0.3.22",
         "uuid": "^9.0.1",
         "yamljs": "^0.3.0"
     },

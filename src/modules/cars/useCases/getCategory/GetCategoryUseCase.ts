@@ -1,3 +1,4 @@
+import { Category } from "../../entities/Category";
 import { ICategoryRepository } from "../../repositories/ICategoryRepository";
 
 class GetCategoryUseCase {
@@ -5,8 +6,8 @@ class GetCategoryUseCase {
         this.categoryRepository = categoryRepository;
     }
 
-    execute() {
-        const categories = this.categoryRepository.list();
+    async execute(): Promise<Category[]> {
+        const categories = await this.categoryRepository.list();
 
         return categories;
     }

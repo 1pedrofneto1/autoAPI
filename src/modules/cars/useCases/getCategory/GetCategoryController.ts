@@ -6,8 +6,8 @@ class GetCategoryController {
     constructor(private getCategoryUseCase: GetCategoryUseCase) {
         this.getCategoryUseCase = getCategoryUseCase;
     }
-    handle(_req: Request, res: Response): Response {
-        const categories = this.getCategoryUseCase.execute();
+    async handle(_req: Request, res: Response): Promise<Response> {
+        const categories = await this.getCategoryUseCase.execute();
 
         return res.status(200).json(categories);
     }
